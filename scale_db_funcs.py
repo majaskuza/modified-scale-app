@@ -69,9 +69,12 @@ def massToDB(dbc, mass, subjid, experid):
     #sqlstr = 'insert into mass(mass,animalid,experid) values(%s,%s,%s)'
     #dbc.execute(sqlstr, (mass, subjid, experid))
 
+
+'''Maja removed this part
 def runSubject(dbc, subjid):
     dbc.call('met.runSubject(%s)', (subjid,))
     dbc.commit()
+'''
 
 def selectMass(dbc,animalid):
     sqlstr = 'select mass from mass where subjid=%s'
