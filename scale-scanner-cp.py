@@ -164,6 +164,12 @@ if len(RFID_text)>14:
     else:
       st.warning(f'This animal is not on training schedule')
       rigid = ''
+    #maja adding an optional bypass of rig assignment to have a weight only option
+    if st.button('Weigh animal without assigning a rig'):
+      rigid = ''
+      st.session_state.current_rigid = 0
+      st.write('Animal weight will be recorded without assigning a rig.')
+  
 
 
   else:
@@ -198,7 +204,7 @@ if subjid != 0:
             massToDB(dbc, weight_reading, subjid, current_experid)
             # run_subj_in_rig(subjid,rigid)
             # submit animal weight
-            st.session_state.msg.start_session(subjid,rigid) # send start message
+          #maja removing this part to prevent initializing the session:  st.session_state.msg.start_session(subjid,rigid) # send start message
             st.session_state.allow_rfid_read = True
             display_success = f'Running animal {subjid} in rig {rigid}'
 
@@ -250,7 +256,7 @@ if subjid != 0:
           # rigid = get_subj_rigid(subjid)
           # run_subj_in_rig(subjid,rigid)
           display_success = f'running animal {subjid} in rig {rigid}'
-          st.session_state.msg.start_session(subjid,rigid) # send start message
+         #maja removing this: st.session_state.msg.start_session(subjid,rigid) # send start message
           st.session_state.allow_rfid_read = True
           st.session_state.current_subjid = 0
           st.session_state.current_rigid = 0
