@@ -13,6 +13,9 @@ from scale_db_funcs import *
 import helpers.DBUtilsClass as db
 import datetime as DT
 
+#new function by Maja
+from automatic_spreadsheet import add_recording_entry
+
 st.title("Animal Weighting and Running Controller")
 
 if 'msg' not in st.session_state:
@@ -201,10 +204,17 @@ if subjid != 0:
           st.write(f'Weight is {weight_reading:.2f}g')
           # do something to run animal
           if verify_weight(dbc,subjid,weight_reading): #otherwise need to re-weight
-            massToDB(dbc, weight_reading, subjid, current_experid)
+           #new line by Maja
+             current_time = DT.datetime.now()  # Get current timestamp
+             training_start = current_time.strftime("%H:%M")  # Format to hour and minute
+             add_recording_entry(url, subjid, training_start=training_start, weight=weight_reading)
+                    
+            # massToDB(dbc, weight_reading, subjid, current_experid)
             # run_subj_in_rig(subjid,rigid)
             # submit animal weight
           #maja removing this part to prevent initializing the session:  st.session_state.msg.start_session(subjid,rigid) # send start message
+            
+            
             st.session_state.allow_rfid_read = True
             display_success = f'Running animal {subjid} in rig {rigid}'
 
@@ -221,7 +231,7 @@ if subjid != 0:
           st.write(f'Weight is {weight_reading:.2f}g')
           # submit animal weight
           if verify_weight(dbc,subjid,weight_reading): #otherwise need to re-weight
-            massToDB(dbc, weight_reading, subjid, current_experid)
+           # massToDB(dbc, weight_reading, subjid, current_experid)
             display_success = f'Weight for {subjid} saved to database'
             st.session_state.allow_rfid_read = True
             st.session_state.current_subjid = 0
