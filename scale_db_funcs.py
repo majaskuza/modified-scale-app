@@ -52,25 +52,21 @@ def getAnimalInfo(dbc,rfid):
     sqlo = dbc.query(sqlstr)
     return sqlo
 
+'''Maja removed this part
 def whichRig(dbc,subjid):
     sqlstr = ('select rigid from schedule_today where subjid = "' + subjid + '"')
     sqlo = dbc.query(sqlstr)
     return sqlo
-
 def expDescription(dbc, expgroupid):
     sqlstr = 'select description from met.expgroups where expgroupid=%s'
     sqlo = dbc.query(sqlstr, (expgroupid,))
     return sqlo
-
 def massToDB(dbc, mass, subjid, experid):
     ''' save mass to DB'''
     dbc.call('met.addMassReading(%s, %s, %s)', (subjid, float(mass), experid))
     dbc.commit()
     #sqlstr = 'insert into mass(mass,animalid,experid) values(%s,%s,%s)'
     #dbc.execute(sqlstr, (mass, subjid, experid))
-
-
-'''Maja removed this part
 def runSubject(dbc, subjid):
     dbc.call('met.runSubject(%s)', (subjid,))
     dbc.commit()
