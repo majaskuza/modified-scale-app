@@ -25,15 +25,9 @@ def whichRoom(dbc):
 def selectCage(dbc, IPaddr):
     '''which room is the rig in and select all the cage in this room'''
     roomid = dbc.query('select roomid from computers where IP=%s', (IPaddr,))[0][0]
-    if roomid == 3:
-        species = 'mouse'
-    elif roomid == 4:
-        species = 'rat'
-    else:
-        print('Do not know about roomid {}'.format(roomid))
-
+    #Maja removed the specifying of mice vs rat
+    species = 'rat'
     sqlstr = 'select distinct(cageid) from animals where species=%s and cageid is not null and status <> "dead" order by cageid'
-
     sqlo = dbc.query(sqlstr, (species,))
     return sqlo
 
