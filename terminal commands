@@ -1,0 +1,11 @@
+#code to set up the app on the PC where the scale is being recorded
+
+mkdir -p ~/repos 
+git clone https://github.com/majaskuza/modified-scale-app.git ~/repos/modified-scale-app
+cd ~/repos/modified-scale-app
+
+conda env create -f environment.yml
+conda activate scale
+
+export PYTHONPATH=~/repos
+streamlit run scale-scanner-cp.py
