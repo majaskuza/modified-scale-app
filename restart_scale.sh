@@ -13,7 +13,7 @@ fi
 
 # activate conda environment
 eval "$(conda shell.bash hook)"
-conda activate scale
+conda activate new_scale
 
 # start scale app
 
