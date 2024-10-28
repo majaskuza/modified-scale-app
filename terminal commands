@@ -4,7 +4,7 @@ mkdir -p ~/repos
 git clone https://github.com/majaskuza/modified-scale-app.git ~/repos/modified-scale-app
 cd ~/repos/modified-scale-app
 
-conda env create -f env.yml
+conda env create --name new_scale --file env.yml
 conda activate new_scale
 
 export PYTHONPATH=~/repos
