@@ -14,7 +14,6 @@ class zmq_messenger(object):
         self.zmq_pusher = zmqhelper.pusher()
         self.zmq_conn = True
 
-'''(Maja) not calling this function anymore
     def start_session(self,subjid,rigid):
         now = datetime.now()
         current_ts = now.strftime("%Y-%m-%d_%H:%M:%S")
