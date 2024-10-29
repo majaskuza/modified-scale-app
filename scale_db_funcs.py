@@ -46,7 +46,6 @@ def getAnimalInfo(dbc,rfid):
     sqlo = dbc.query(sqlstr)
     return sqlo
 
-'''Maja removed this part
 def whichRig(dbc,subjid):
     sqlstr = ('select rigid from schedule_today where subjid = "' + subjid + '"')
     sqlo = dbc.query(sqlstr)
@@ -64,7 +63,6 @@ def massToDB(dbc, mass, subjid, experid):
 def runSubject(dbc, subjid):
     dbc.call('met.runSubject(%s)', (subjid,))
     dbc.commit()
-'''
 
 def selectMass(dbc,animalid):
     sqlstr = 'select mass from mass where subjid=%s'
