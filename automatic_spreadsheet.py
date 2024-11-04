@@ -1,6 +1,9 @@
 import pandas as pd
 from datetime import datetime
 
+
+local_file_path = "/Users/majaskuza/desktop/local_weight_record.xlsx"
+
 def create_initial_recording_dataframe():
     columns = [
         "Date", "Cage", "ID", "Name", "Start weight", 
@@ -10,7 +13,7 @@ def create_initial_recording_dataframe():
     return pd.DataFrame(columns=columns)
 
 def create_initial_animal_data_dataframe():
-    animal_data_headers = ["name", "rig", "cage", "shift", "food", "Start weight", "ID"]
+    animal_data_headers = ["RFID", "name", "rig", "cage", "shift", "food", "Start weight", "ID"]
     return pd.DataFrame(columns=animal_data_headers)
 
 def save_initial_dataframes(file_path):
@@ -45,6 +48,7 @@ def add_recording_entry(df, animal_df, name, weight):
     
     percent = (weight / eighty_percent_weight) * 100  
     new_entry = {
+        "RFID": rfid,
         "Date": date,
         "Cage": cage,
         "ID": id_,
@@ -67,13 +71,12 @@ def save_recording_df(recording_df, file_path):
     with pd.ExcelWriter(file_path, engine='openpyxl', mode='a', if_sheet_exists="replace") as writer:
         recording_df.to_excel(writer, index=False, sheet_name='Recording Entries')
 
-local_file_path = "/Users/majaskuza/desktop/local_weight_record.xlsx"
+
+"""
 save_initial_dataframes(local_file_path)
 # Load the updated animal data after manual additions
 animal_data_df = load_animal_data_dataframe(local_file_path)
 recording_df = create_initial_recording_dataframe()
-
-
 #single entry to add 
 recording_df = add_recording_entry(
     recording_df, animal_data_df,
@@ -81,5 +84,7 @@ recording_df = add_recording_entry(
     weight=376
 )
 save_recording_df(recording_df, local_file_path)
+"""
+
 
 
